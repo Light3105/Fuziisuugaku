@@ -1,0 +1,278 @@
+/* style.css */
+
+/* --- 基本設定と変数定義 --- */
+:root {
+    --bg-color: #f8fafc; /* slate-50 */
+    --text-color-primary: #1e293b; /* slate-800 */
+    --text-color-secondary: #475569; /* slate-600 */
+    --accent-color: #0d9488; /* teal-600 */
+    --accent-color-hover: #0f766e; /* teal-700 */
+    --border-color: #e2e8f0; /* slate-200 */
+    --content-bg-color: #ffffff;
+    --code-bg-color: #f1f5f9; /* slate-100 */
+
+    --font-primary: 'Inter', 'Noto Sans JP', sans-serif;
+    --font-mono: 'monospace';
+}
+
+/* --- 全体スタイル --- */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-color);
+    color: var(--text-color-primary);
+    margin: 0;
+    padding: 1rem;
+    line-height: 1.7;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* --- ヘッダー --- */
+.site-header {
+    text-align: center;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.site-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-color-primary);
+    margin: 0;
+}
+
+.site-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-color-secondary);
+    margin-top: 0.5rem;
+}
+
+.search-container {
+    position: relative;
+    max-width: 600px;
+    margin: 2rem auto 0;
+}
+
+#search-box {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border-radius: 9999px;
+    border: 1px solid var(--border-color);
+    background-color: var(--content-bg-color);
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#search-box:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color-secondary);
+}
+
+/* --- ナビゲーション --- */
+.subject-navigation {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.nav-button {
+    padding: 0.5rem 1.25rem;
+    border: 1px solid var(--border-color);
+    border-radius: 9999px;
+    background-color: var(--content-bg-color);
+    color: var(--text-color-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.nav-button:hover {
+    background-color: var(--accent-color-hover);
+    color: white;
+    border-color: var(--accent-color-hover);
+}
+
+.nav-button.active {
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* --- メインコンテンツ & アコーディオン --- */
+.subject-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.unit-accordion {
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: var(--content-bg-color);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.unit-accordion:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.unit-header, .formula-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: inherit;
+}
+
+.unit-header {
+    background-color: rgba(241, 245, 249, 0.5); /* slate-100 の半透明 */
+}
+
+.unit-title, .formula-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-color-primary);
+}
+
+.formula-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.accordion-icon {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease-in-out;
+    color: var(--text-color-secondary);
+}
+
+.unit-accordion.open > .unit-header .accordion-icon,
+.formula-item.open > .formula-header .accordion-icon {
+    transform: rotate(90deg);
+}
+
+.unit-content, .formula-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+}
+
+.formula-list {
+    padding: 0 1rem 1rem 1rem;
+}
+
+.formula-item {
+    border-top: 1px solid var(--border-color);
+}
+
+.formula-details {
+    padding: 0.5rem 1.5rem 1.5rem;
+}
+
+.detail-section {
+    margin-top: 1.5rem;
+}
+
+.detail-title {
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+.detail-title .fa-fw {
+    font-size: 0.9em;
+}
+
+.formula-display {
+    background-color: var(--code-bg-color);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.2rem; /* KaTeXフォントサイズ調整 */
+    overflow-x: auto;
+}
+
+.detail-section p, .detail-section ul {
+    color: var(--text-color-secondary);
+    margin: 0;
+}
+
+.detail-section ul {
+    padding-left: 1.5rem;
+}
+
+.detail-section li {
+    margin-bottom: 0.5rem;
+}
+
+/* --- フッター --- */
+.site-footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color-secondary);
+    font-size: 0.9rem;
+}
+
+/* --- レスポンシブデザイン --- */
+@media (max-width: 768px) {
+    body {
+        padding: 0;
+    }
+    .container {
+        padding: 0 0.75rem;
+    }
+    .site-title {
+        font-size: 2rem;
+    }
+    .subject-title {
+        font-size: 1.75rem;
+    }
+    .unit-title {
+        font-size: 1.15rem;
+    }
+    .formula-title {
+        font-size: 1.05rem;
+    }
+    .unit-header, .formula-header {
+        padding: 1rem;
+    }
+    .formula-details {
+        padding: 0.5rem 1rem 1.5rem;
+    }
+}
